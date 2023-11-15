@@ -1,17 +1,10 @@
-import {expect, test, vi} from "vitest"
+import {expect, test} from "vitest"
 
-import {getImageDimensions, isCloudinaryImage} from "../src/cloudinary"
-
-const mockFetch = vi.fn()
-
-mockFetch.mockResolvedValue({
-    json: async () => {
-        const response = {output: {width: 100, height: 100}}
-        return response
-    },
-})
-
-global.fetch = mockFetch
+import {
+    getBlurImage,
+    getImageDimensions,
+    isCloudinaryImage,
+} from "../src/cloudinary"
 
 test("identifies http cloudinary images", () => {
     const result = isCloudinaryImage("http://res.cloudinary.com/photo.jpg")
@@ -30,8 +23,18 @@ test("identifies other images", () => {
 
 test("gets image dimensions", async () => {
     const dimensions = await getImageDimensions(
-        "https://res.cloudinary.com/bradgarropy/image/upload/f_auto,q_auto/bradgarropy.com/photo.jpg",
+        "https://res.cloudinary.com/winterlood/image/upload/v1700021380/blog/oor6bftmbqvqc93argrs.png",
     )
 
-    expect(dimensions).toEqual({width: 100, height: 100})
+    expect(dimensions).toEqual({width: 902, height: 460})
+})
+
+test("gets blur image", async () => {
+    const blurImageURL = getBlurImage(
+        "https://res.cloudinary.com/winterlood/image/upload/v1700021380/blog/oor6bftmbqvqc93argrs.png",
+    )
+
+    expect(blurImageURL).toEqual(
+        "https://res.cloudinary.com/winterlood/image/upload/w_100/e_blur:1000,q_auto,f_webp/v1700021380/blog/oor6bftmbqvqc93argrs.png",
+    )
 })

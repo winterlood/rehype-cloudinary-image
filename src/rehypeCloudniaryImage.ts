@@ -2,13 +2,17 @@ import {Properties} from "hast"
 import {Element, isElement} from "hast-util-is-element"
 import {CONTINUE, Node, SKIP, visit} from "unist-util-visit"
 
-import {getImageDimensions, isCloudinaryImage} from "./cloudinary.js"
+import {
+    getBlurImage,
+    getImageDimensions,
+    isCloudinaryImage,
+} from "./cloudinary.js"
 
 interface Image extends Element {
     properties: Properties
 }
 
-const rehypeCloudinaryImageSize = () => {
+const rehypeCloudniaryImage = () => {
     const images: Image[] = []
 
     const visitor = (node: Element) => {
@@ -37,6 +41,9 @@ const rehypeCloudinaryImageSize = () => {
         images.forEach((image, index) => {
             const dimension = dimensions[index]
 
+            image.properties.blurDataURL = getBlurImage(
+                image.properties?.src as string,
+            )
             image.properties.width = dimension.width
             image.properties.height = dimension.height
         })
@@ -45,4 +52,4 @@ const rehypeCloudinaryImageSize = () => {
     return transformer
 }
 
-export {rehypeCloudinaryImageSize}
+export {rehypeCloudniaryImage}

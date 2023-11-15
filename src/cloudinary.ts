@@ -3,15 +3,16 @@ type Dimensions = {
     height: number
 }
 
+// https://res.cloudinary.com/bradgarropy/image/upload/f_auto,q_auto/bradgarropy.com/pages/home/profile.jpg
+
 const getImageDimensions = async (imageUrl: string): Promise<Dimensions> => {
     const url = new URL(imageUrl)
 
-    const pathSegments = url.pathname.split("/")
-    const index = pathSegments.findIndex(value => value === "bradgarropy.com")
-    pathSegments.splice(index, 0, "fl_getinfo")
-    url.pathname = pathSegments.join("/")
+    let pathSegments = url.pathname.split("/upload")
+    pathSegments = [pathSegments[0], "/upload", "/fl_getinfo", pathSegments[1]]
+    const reqURL = "https://res.cloudinary.com" + pathSegments.join("")
 
-    const response = await fetch(url)
+    const response = await fetch(reqURL)
     const json = await response.json()
 
     const dimensions: Dimensions = {
@@ -20,6 +21,19 @@ const getImageDimensions = async (imageUrl: string): Promise<Dimensions> => {
     }
 
     return dimensions
+}
+
+const getBlurImage = (imageUrl: string): string => {
+    const url = new URL(imageUrl)
+
+    let pathSegments = url.pathname.split("/upload")
+    pathSegments = [
+        pathSegments[0],
+        "/upload",
+        "/w_100/e_blur:1000,q_auto,f_webp",
+        pathSegments[1],
+    ]
+    return "https://res.cloudinary.com" + pathSegments.join("")
 }
 
 const isCloudinaryImage = (url: string) => {
@@ -34,5 +48,5 @@ const isCloudinaryImage = (url: string) => {
     return false
 }
 
-export {getImageDimensions, isCloudinaryImage}
+export {getBlurImage, getImageDimensions, isCloudinaryImage}
 export type {Dimensions}

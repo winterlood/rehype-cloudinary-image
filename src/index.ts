@@ -1,1 +1,1 @@
-export {rehypeCloudinaryImageSize} from "./rehypeCloudinaryImageSize.js"
+export {rehypeCloudniaryImage} from "./rehypeCloudniaryImage.js"

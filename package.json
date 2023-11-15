@@ -1,11 +1,11 @@
 {
     "author": {
-        "name": "Brad Garropy",
-        "email": "bradgarropy@gmail.com",
-        "url": "https://bradgarropy.com"
+        "name": "Winterlood",
+        "email": "winterlood@gmail.com",
+        "url": "https://winterlood.com"
     },
     "bugs": {
-        "url": "https://github.com/bradgarropy/rehype-cloudinary-image-size/issues"
+        "url": "https://github.com/winterlood/rehype-cloudinary-image-size/issues"
     },
     "description": "🖼 rehype cloudinary image size",
     "devDependencies": {
@@ -35,7 +35,7 @@
     "files": [
         "dist"
     ],
-    "homepage": "https://github.com/bradgarropy/rehype-cloudinary-image-size",
+    "homepage": "https://github.com/winterlood/rehype-cloudinary-image-size",
     "keywords": [
         "node",
         "typescript",
@@ -49,10 +49,10 @@
     ],
     "license": "MIT",
     "main": "dist/index.js",
-    "name": "@bradgarropy/rehype-cloudinary-image-size",
+    "name": "@winterlood/rehype-cloudinary-image",
     "repository": {
         "type": "git",
-        "url": "https://github.com/bradgarropy/rehype-cloudinary-image-size"
+        "url": "https://github.com/winterlood/rehype-cloudinary-image"
     },
     "scripts": {
         "start": "tsc --watch",
@@ -69,7 +69,7 @@
     },
     "type": "module",
     "types": "dist/types/index.d.ts",
-    "version": "1.0.1",
+    "version": "2.0.0",
     "dependencies": {
         "hast-util-is-element": "^2.1.2",
         "unist-util-visit": "^4.1.1"
