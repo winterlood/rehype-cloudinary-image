@@ -5,9 +5,9 @@
         "url": "https://winterlood.com"
     },
     "bugs": {
-        "url": "https://github.com/winterlood/rehype-cloudinary-image-size/issues"
+        "url": "https://github.com/winterlood/rehype-cloudinary-image/issues"
     },
-    "description": "🖼 rehype cloudinary image size",
+    "description": "🖼 rehype cloudinary image size & blurURL",
     "devDependencies": {
         "@bradgarropy/eslint-config": "^1.1.0",
         "@bradgarropy/eslint-config-typescript": "^1.0.0",
@@ -35,7 +35,7 @@
     "files": [
         "dist"
     ],
-    "homepage": "https://github.com/winterlood/rehype-cloudinary-image-size",
+    "homepage": "https://github.com/winterlood/rehype-cloudinary-image",
     "keywords": [
         "node",
         "typescript",
@@ -69,7 +69,7 @@
     },
     "type": "module",
     "types": "dist/types/index.d.ts",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "dependencies": {
         "hast-util-is-element": "^2.1.2",
         "unist-util-visit": "^4.1.1"
