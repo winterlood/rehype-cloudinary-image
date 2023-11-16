@@ -32,18 +32,23 @@ const rehypeCloudniaryImage = () => {
     const transformer = async (tree: Node) => {
         visit(tree, "element", visitor)
 
-        const promises = images.map(image => {
+        const dimensionPromises = images.map(image => {
             return getImageDimensions(image.properties?.src as string)
         })
 
-        const dimensions = await Promise.all(promises)
+        const dimensions = await Promise.all(dimensionPromises)
+
+        const blurPromises = images.map(image => {
+            return getBlurImage(image.properties?.src as string)
+        })
+
+        const blurImages = await Promise.all(blurPromises)
 
         images.forEach((image, index) => {
             const dimension = dimensions[index]
+            const blurImage = blurImages[index]
 
-            image.properties.blurDataURL = getBlurImage(
-                image.properties?.src as string,
-            )
+            image.properties.blurDataURL = blurImage
             image.properties.width = dimension.width
             image.properties.height = dimension.height
         })
